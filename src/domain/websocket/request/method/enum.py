@@ -10,7 +10,7 @@ class Method(Enum):
     UNSUB = "UNSUB"
 
     @staticmethod
-    def validate_method(method: str):
+    def create(method: str):
         try:
             upper_case_method = method.upper()
             method = Method[upper_case_method]

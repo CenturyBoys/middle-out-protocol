@@ -20,7 +20,7 @@ class Request:
         self.__args = Args.create(args=args)
         self.__header = Header.create(header=header)
         self.__route = Route.create(route=route)
-        self.__method = Method.validate_method(method=method)
+        self.__method = Method.create(method=method)
 
     @property
     def id(self):
