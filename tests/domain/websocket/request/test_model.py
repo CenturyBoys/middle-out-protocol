@@ -3,6 +3,7 @@ import pytest
 from src.domain.exception.server.model import InvalidRequestMethodException
 from src.domain.websocket.request.method.enum import Method
 from src.domain.websocket.request.model import Request
+from src.domain.websocket.response.code.enum import ResponseCode
 
 
 @pytest.fixture
@@ -97,6 +98,9 @@ def test_should_get_a_get_request_with_valid_properties(valid_get_request):
 
 
 def test_should_except_a_invalid_request_method_exception(request_with_invalid_method):
-    assert request_with_invalid_method.value.args[0] == "Invalid method send"
+    assert request_with_invalid_method.value.args[0] == "Method INVALID_METHOD is invalid method"
 
 
+def test_should_except_a_invalid_request_method_exception_with_response_code(request_with_invalid_method):
+    assert request_with_invalid_method.value.message == "Method INVALID_METHOD is invalid method"
+    assert request_with_invalid_method.value.code == ResponseCode.INVALID_METHOD
