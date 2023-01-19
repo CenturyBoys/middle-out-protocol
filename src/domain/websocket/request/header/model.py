@@ -1,7 +1,7 @@
 
 from dataclasses import dataclass
 
-from src.domain.exception.server.model import InvalidRequestIdException, InvalidRequestHeaderException
+from src.domain.exception.server.model import InvalidRequestHeaderException
 
 
 @dataclass(slots=True)

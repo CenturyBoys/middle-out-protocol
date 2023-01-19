@@ -32,3 +32,10 @@ class InvalidRequestHeaderException(ServerException):
         self.message: str = message
         self.code = ResponseCode.INVALID_REQUEST_HEADER
         super().__init__(message)
+
+
+class InvalidRequestRouteException(ServerException):
+    def __init__(self, message: str = "Invalid request route sent"):
+        self.message: str = message
+        self.code = ResponseCode.INVALID_REQUEST_ROUTE
+        super().__init__(message)
