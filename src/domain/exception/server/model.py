@@ -18,3 +18,10 @@ class InvalidRequestArgsException(ServerException):
         self.message: str = message
         self.code = ResponseCode.INVALID_REQUEST_ARGS
         super().__init__(message)
+
+
+class InvalidRequestIdException(ServerException):
+    def __init__(self, message: str = "Invalid request id sent"):
+        self.message: str = message
+        self.code = ResponseCode.INVALID_REQUEST_ID
+        super().__init__(message)

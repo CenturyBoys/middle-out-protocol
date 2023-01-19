@@ -1,19 +1,20 @@
 from dataclasses import dataclass
 
 from src.domain.websocket.request.args.model import Args
+from src.domain.websocket.request.id.model import Id
 from src.domain.websocket.request.method.enum import Method
 
 
 @dataclass(slots=True)
 class Request:
-    __id: str
+    __id: Id
     __args: Args
     __header: dict
     __route: str
     __method: Method
 
     def __init__(self, id: str, args: dict, header: dict, route: str, method: str):
-        self.__id = id
+        self.__id = Id.create(id=id)
         self.__args = Args.create(args=args)
         self.__header = header
         self.__route = route
@@ -21,7 +22,7 @@ class Request:
 
     @property
     def id(self):
-        return self.__id
+        return self.__id.id
 
     @property
     def args(self):
