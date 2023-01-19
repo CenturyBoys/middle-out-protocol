@@ -17,7 +17,7 @@ class Method(Enum):
         except KeyError as error:
             # TODO: Log this error
             raise InvalidRequestMethodException(
-                f"Method {method.upper()} is invalid method"
+                f"Method {method.upper()} is invalid"
             )
 
         return method

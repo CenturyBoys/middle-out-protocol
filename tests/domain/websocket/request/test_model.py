@@ -1,6 +1,6 @@
 import pytest
 
-from src.domain.exception.server.model import InvalidRequestMethodException
+from src.domain.exception.server.model import InvalidRequestMethodException, InvalidRequestArgsException
 from src.domain.websocket.request.method.enum import Method
 from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.code.enum import ResponseCode
@@ -34,6 +34,13 @@ def valid_get_request():
 def request_with_invalid_method():
     with pytest.raises(InvalidRequestMethodException) as error:
         Request(id="request", args={}, header={}, route="valid_route", method="invalid_method")
+    return error
+
+
+@pytest.fixture
+def request_with_invalid_args():
+    with pytest.raises(InvalidRequestArgsException) as error:
+        Request(id="request", args="INVALID_ARGS", header={}, route="valid_route", method="sub")
     return error
 
 
@@ -98,9 +105,14 @@ def test_should_get_a_get_request_with_valid_properties(valid_get_request):
 
 
 def test_should_except_a_invalid_request_method_exception(request_with_invalid_method):
-    assert request_with_invalid_method.value.args[0] == "Method INVALID_METHOD is invalid method"
+    assert request_with_invalid_method.value.args[0] == "Method INVALID_METHOD is invalid"
 
 
 def test_should_except_a_invalid_request_method_exception_with_response_code(request_with_invalid_method):
-    assert request_with_invalid_method.value.message == "Method INVALID_METHOD is invalid method"
-    assert request_with_invalid_method.value.code == ResponseCode.INVALID_METHOD
+    assert request_with_invalid_method.value.message == "Method INVALID_METHOD is invalid"
+    assert request_with_invalid_method.value.code == ResponseCode.INVALID_REQUEST_METHOD
+
+
+def test_should_except_a_invalid_request_args_exception_with_response_code(request_with_invalid_args):
+    assert request_with_invalid_args.value.message == "Request args INVALID_ARGS is invalid"
+    assert request_with_invalid_args.value.code == ResponseCode.INVALID_REQUEST_ARGS

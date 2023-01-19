@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from src.domain.exception.server.model import InvalidRequestArgsException
 from src.domain.websocket.request.method.enum import Method
 
 
@@ -13,10 +14,20 @@ class Request:
 
     def __init__(self, id: str, args: dict, header: dict, route: str, method: str):
         self.__id = id
-        self.__args = args
+        self.__args = self.validate_args(args=args)
         self.__header = header
         self.__route = route
-        self.__method = Method.validate_method(method)
+        self.__method = Method.validate_method(method=method)
+
+    @staticmethod
+    def validate_args(args):
+        is_dict_args = type(args) == dict
+        if not is_dict_args:
+            raise InvalidRequestArgsException(
+                f"Request args {args} is invalid"
+            )
+
+        return args
 
     @property
     def id(self):

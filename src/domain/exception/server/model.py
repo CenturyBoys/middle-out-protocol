@@ -7,7 +7,14 @@ class ServerException(Exception):
 
 
 class InvalidRequestMethodException(ServerException):
-    def __init__(self, message: str = "Invalid method send"):
+    def __init__(self, message: str = "Invalid request method sent"):
         self.message: str = message
-        self.code = ResponseCode.INVALID_METHOD
+        self.code = ResponseCode.INVALID_REQUEST_METHOD
+        super().__init__(message)
+
+
+class InvalidRequestArgsException(ServerException):
+    def __init__(self, message: str = "Invalid request args sent"):
+        self.message: str = message
+        self.code = ResponseCode.INVALID_REQUEST_ARGS
         super().__init__(message)
