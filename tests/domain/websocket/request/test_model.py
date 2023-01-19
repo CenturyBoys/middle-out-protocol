@@ -1,7 +1,7 @@
 import pytest
 
 from src.domain.exception.server.model import InvalidRequestMethodException, InvalidRequestArgsException, \
-    InvalidRequestIdException
+    InvalidRequestIdException, InvalidRequestHeaderException
 from src.domain.websocket.request.method.enum import Method
 from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.code.enum import ResponseCode
@@ -49,6 +49,13 @@ def request_with_invalid_args():
 def request_with_invalid_id():
     with pytest.raises(InvalidRequestIdException) as error:
         Request(id=1234, args={}, header={}, route="valid_route", method="sub")
+    return error
+
+
+@pytest.fixture
+def request_with_invalid_header():
+    with pytest.raises(InvalidRequestHeaderException) as error:
+        Request(id="request", args={}, header="INVALID HEADER", route="valid_route", method="sub")
     return error
 
 
@@ -129,3 +136,8 @@ def test_should_except_a_invalid_request_args_exception_with_response_code(reque
 def test_should_except_a_invalid_request_id_exception_with_response_code(request_with_invalid_id):
     assert request_with_invalid_id.value.message == "Request id 1234 is invalid"
     assert request_with_invalid_id.value.code == ResponseCode.INVALID_REQUEST_ID
+
+
+def test_should_except_a_invalid_request_header_exception_with_response_code(request_with_invalid_header):
+    assert request_with_invalid_header.value.message == "Request header INVALID HEADER is invalid"
+    assert request_with_invalid_header.value.code == ResponseCode.INVALID_REQUEST_HEADER

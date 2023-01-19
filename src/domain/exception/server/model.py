@@ -25,3 +25,10 @@ class InvalidRequestIdException(ServerException):
         self.message: str = message
         self.code = ResponseCode.INVALID_REQUEST_ID
         super().__init__(message)
+
+
+class InvalidRequestHeaderException(ServerException):
+    def __init__(self, message: str = "Invalid request header sent"):
+        self.message: str = message
+        self.code = ResponseCode.INVALID_REQUEST_HEADER
+        super().__init__(message)

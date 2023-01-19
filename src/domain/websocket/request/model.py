@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from src.domain.websocket.request.args.model import Args
+from src.domain.websocket.request.header.model import Header
 from src.domain.websocket.request.id.model import Id
 from src.domain.websocket.request.method.enum import Method
 
@@ -9,14 +10,14 @@ from src.domain.websocket.request.method.enum import Method
 class Request:
     __id: Id
     __args: Args
-    __header: dict
+    __header: Header
     __route: str
     __method: Method
 
     def __init__(self, id: str, args: dict, header: dict, route: str, method: str):
         self.__id = Id.create(id=id)
         self.__args = Args.create(args=args)
-        self.__header = header
+        self.__header = Header.create(header=header)
         self.__route = route
         self.__method = Method.validate_method(method=method)
 
@@ -30,7 +31,7 @@ class Request:
 
     @property
     def header(self):
-        return self.__header
+        return self.__header.header
 
     @property
     def route(self):
