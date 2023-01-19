@@ -15,6 +15,7 @@ class Method(Enum):
             upper_case_method = method.upper()
             method = Method[upper_case_method]
         except KeyError as error:
+            # TODO: Log this error
             raise InvalidRequestMethodException(
                 f"Method {method.upper()} is invalid method"
             )
