@@ -1,0 +1,2 @@
+class MethodManager:
+    pass

@@ -1,12 +1,7 @@
 from websockets import WebSocketServerProtocol
 
-from src.domain.websocket.controller.manager.base import BaseManager
-from src.domain.websocket.controller.manager.broadcast.sub.model import BroadCastSubManager
-from src.domain.websocket.controller.manager.broadcast.unsub.model import BroadCastUnsubManager
-from src.domain.websocket.controller.manager.channel.sub.model import ChannelSubManager
-from src.domain.websocket.controller.manager.channel.unsub.model import ChannelUnsubManager
-from src.domain.websocket.controller.manager.get.model import GetManager
-from src.domain.websocket.controller.manager.post.model import PostManager
+from src.domain.websocket.controller.manager.model import MethodManager
+
 
 
 class Connection:
@@ -18,12 +13,12 @@ class Connection:
         self.__ip_remote_address = ws.remote_address[0]
         self.__sub_protocol = ws.request_headers["Sec-WebSocket-Protocol"]
 
-        self.__post_manager: BaseManager = PostManager()
-        self.__get_manager: BaseManager = GetManager()
-        self.__channel_sub_manager: BaseManager = ChannelSubManager()
-        self.__channel_unsub_manager: BaseManager = ChannelUnsubManager()
-        self.__broadcast_sub_manager: BaseManager = BroadCastSubManager()
-        self.__broadcast_unsub_manager: BaseManager = BroadCastUnsubManager()
+        self.__post_manager: MethodManager = MethodManager()
+        self.__get_manager: MethodManager = MethodManager()
+        self.__channel_sub_manager: MethodManager = MethodManager()
+        self.__channel_unsub_manager: MethodManager = MethodManager()
+        self.__broadcast_sub_manager: MethodManager = MethodManager()
+        self.__broadcast_unsub_manager: MethodManager = MethodManager()
 
     @property
     def ws(self):
