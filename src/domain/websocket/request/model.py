@@ -41,6 +41,3 @@ class Request:
     @property
     def method(self):
         return self.__method
-
-
-

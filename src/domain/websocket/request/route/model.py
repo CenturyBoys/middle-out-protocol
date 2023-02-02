@@ -20,8 +20,6 @@ class Route:
     def validate_route(route: str):
         is_str_route = type(route) == str
         if not is_str_route:
-            raise InvalidRequestRouteException(
-                f"Request route {route} is invalid"
-            )
+            raise InvalidRequestRouteException(f"Request route {route} is invalid")
 
         return route

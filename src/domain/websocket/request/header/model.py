@@ -1,4 +1,3 @@
-
 from dataclasses import dataclass
 
 from src.domain.exception.server.model import InvalidRequestHeaderException
@@ -21,8 +20,6 @@ class Header:
     def validate_header(header: dict):
         is_dict_header = type(header) == dict
         if not is_dict_header:
-            raise InvalidRequestHeaderException(
-                f"Request header {header} is invalid"
-            )
+            raise InvalidRequestHeaderException(f"Request header {header} is invalid")
 
         return header

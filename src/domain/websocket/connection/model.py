@@ -4,7 +4,6 @@ from src.domain.websocket.controller.manager.model import MethodManager
 
 
 class Connection:
-
     def __init__(self, ws: WebSocketServerProtocol):
         self.__ws = ws
         self.__path = ws.path

@@ -39,3 +39,17 @@ class InvalidRequestRouteException(ServerException):
         self.message: str = message
         self.code = ResponseCode.INVALID_REQUEST_ROUTE
         super().__init__(message)
+
+
+class RouteFunctionIsNotCallableException(ServerException):
+    def __init__(self, message: str = "Route function is not a callable"):
+        self.message: str = message
+        self.code = ResponseCode.ROUTE_FUNCTION_IS_NOT_CALLABLE
+        super().__init__(message)
+
+
+class RouteFunctionHasInvalidSignatureException(ServerException):
+    def __init__(self, message: str = "Route function has a invalid signature"):
+        self.message: str = message
+        self.code = ResponseCode.ROUTE_FUNCTION_HAS_INVALID_SIGNATURE
+        super().__init__(message)
