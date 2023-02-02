@@ -3,7 +3,6 @@ from websockets import WebSocketServerProtocol
 from src.domain.websocket.controller.manager.model import MethodManager
 
 
-
 class Connection:
 
     def __init__(self, ws: WebSocketServerProtocol):
