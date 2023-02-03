@@ -5,7 +5,7 @@ import pytest
 from src.domain.websocket.connection.model import Connection
 from src.domain.websocket.request.method.enum import Method as MethodType
 from src.domain.websocket.request.model import Request
-from src.domain.websocket.route.suite.model import RouteSuite
+from src.domain.websocket.router.suite.model import RouteSuite
 
 
 @pytest.mark.unit
@@ -37,8 +37,8 @@ class TestClass:
     @staticmethod
     @pytest.fixture
     def make_route_to_register_metadata(request):
-        route, method, route_suite, decorator = request.param
-        _method = {method: TestClass.stub_function}
+        route, method_type, route_suite, decorator = request.param
+        _method = {method_type: TestClass.stub_function}
         route_to_register = {route: _method}
         return route_to_register, route_suite, decorator
 
@@ -52,7 +52,7 @@ class TestClass:
         ],
         indirect=["make_route_to_register_metadata"],
     )
-    def test_should_register_get_method_into_route_suite(
+    def test_should_register_method_into_route_suite(
         self, make_route_to_register_metadata
     ):
         route_to_register, route_suite, decorator = make_route_to_register_metadata
