@@ -20,8 +20,6 @@ class Args:
     def validate_args(args):
         is_dict_args = type(args) == dict
         if not is_dict_args:
-            raise InvalidRequestArgsException(
-                f"Request args {args} is invalid"
-            )
+            raise InvalidRequestArgsException(f"Request args {args} is invalid")
 
         return args

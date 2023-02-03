@@ -20,8 +20,6 @@ class Id:
     def validate_id(id: str):
         is_str_id = type(id) == str
         if not is_str_id:
-            raise InvalidRequestIdException(
-                f"Request id {id} is invalid"
-            )
+            raise InvalidRequestIdException(f"Request id {id} is invalid")
 
         return id

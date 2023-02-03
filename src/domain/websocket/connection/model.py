@@ -3,9 +3,7 @@ from websockets import WebSocketServerProtocol
 from src.domain.websocket.controller.manager.model import MethodManager
 
 
-
 class Connection:
-
     def __init__(self, ws: WebSocketServerProtocol):
         self.__ws = ws
         self.__path = ws.path
@@ -17,8 +15,6 @@ class Connection:
         self.__get_manager: MethodManager = MethodManager()
         self.__channel_sub_manager: MethodManager = MethodManager()
         self.__channel_unsub_manager: MethodManager = MethodManager()
-        self.__broadcast_sub_manager: MethodManager = MethodManager()
-        self.__broadcast_unsub_manager: MethodManager = MethodManager()
 
     @property
     def ws(self):
@@ -55,11 +51,3 @@ class Connection:
     @property
     def channel_unsub_manager(self):
         return self.__channel_unsub_manager
-
-    @property
-    def broadcast_sub_manager(self):
-        return self.__broadcast_sub_manager
-
-    @property
-    def broadcast_unsub_manager(self):
-        return self.__broadcast_unsub_manager
