@@ -7,7 +7,7 @@ from src.domain.exception.server.model import (
     InvalidRequestHeaderException,
     InvalidRequestRouteException,
 )
-from src.domain.websocket.request.method.enum import Method
+from src.domain.websocket.request.method.enum import MethodType
 from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.code.enum import ResponseCode
 
@@ -112,7 +112,7 @@ class TestClass:
         assert valid_sub_request.args == {}
         assert valid_sub_request.header == {}
         assert valid_sub_request.route == "valid_route"
-        assert valid_sub_request.method == Method.SUB
+        assert valid_sub_request.method == MethodType.SUB
 
     @staticmethod
     def test_should_get_a_valid_unsub_request_instance(valid_unsub_request):
@@ -127,7 +127,7 @@ class TestClass:
         assert valid_unsub_request.args == {}
         assert valid_unsub_request.header == {}
         assert valid_unsub_request.route == "valid_route"
-        assert valid_unsub_request.method == Method.UNSUB
+        assert valid_unsub_request.method == MethodType.UNSUB
 
     @staticmethod
     def test_should_get_a_valid_post_request_instance(valid_post_request):
@@ -142,7 +142,7 @@ class TestClass:
         assert valid_post_request.args == {}
         assert valid_post_request.header == {}
         assert valid_post_request.route == "valid_route"
-        assert valid_post_request.method == Method.POST
+        assert valid_post_request.method == MethodType.POST
 
     @staticmethod
     def test_should_get_a_valid_get_request_instance(valid_get_request):
@@ -157,7 +157,7 @@ class TestClass:
         assert valid_get_request.args == {}
         assert valid_get_request.header == {}
         assert valid_get_request.route == "valid_route"
-        assert valid_get_request.method == Method.GET
+        assert valid_get_request.method == MethodType.GET
 
     @staticmethod
     def test_should_except_a_invalid_request_method_exception(

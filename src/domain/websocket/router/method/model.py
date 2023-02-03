@@ -2,7 +2,7 @@ from src.domain.exception.server.model import (
     RouteFunctionIsNotCallableException,
     RouteFunctionHasInvalidSignatureException,
 )
-from src.domain.websocket.request.method.enum import Method as MethodType
+from src.domain.websocket.request.method.enum import MethodType as MethodType
 from src.domain.websocket.router.function.model import Function
 
 

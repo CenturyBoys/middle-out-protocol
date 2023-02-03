@@ -5,7 +5,7 @@ from src.domain.exception.server.model import (
     RouteFunctionHasInvalidSignatureException,
 )
 from src.domain.websocket.connection.model import Connection
-from src.domain.websocket.request.method.enum import Method as MethodType
+from src.domain.websocket.request.method.enum import MethodType as MethodType
 from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.code.enum import ResponseCode
 from src.domain.websocket.response.model import Response
