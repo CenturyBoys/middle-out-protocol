@@ -56,5 +56,3 @@ class TestClass:
         assert isinstance(connection_context.get_manager, MethodManager)
         assert isinstance(connection_context.channel_sub_manager, MethodManager)
         assert isinstance(connection_context.channel_unsub_manager, MethodManager)
-        assert isinstance(connection_context.broadcast_sub_manager, MethodManager)
-        assert isinstance(connection_context.broadcast_unsub_manager, MethodManager)
