@@ -44,7 +44,12 @@ class Function:
         return is_valid_params and is_valid_signature
 
     def __is_valid_params(self):
-        callback_signature, connection, hand_shake, request = self.__get_callback_params()
+        (
+            callback_signature,
+            connection,
+            hand_shake,
+            request,
+        ) = self.__get_callback_params()
 
         has_params = all(
             [connection is not None, hand_shake is not None, request is not None]

@@ -11,7 +11,9 @@ from src.domain.websocket.router.function.model import Function
 @pytest.mark.unit
 class TestClass:
     @staticmethod
-    def stub_route_function(connection: Connection, hand_shake: any, request: Request) -> Response:
+    def stub_route_function(
+        connection: Connection, hand_shake: any, request: Request
+    ) -> Response:
         pass
 
     def test_should_create_valid_route_function(self):

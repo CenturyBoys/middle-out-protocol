@@ -39,7 +39,9 @@ class TestClass:
         return name, suite, suite.unsub, route, route.add_unsub_method
 
     @staticmethod
-    def stub_function(connection: Connection, hand_shake: any, request: Request) -> Response:
+    def stub_function(
+        connection: Connection, hand_shake: any, request: Request
+    ) -> Response:
         pass
 
     @staticmethod
@@ -67,7 +69,14 @@ class TestClass:
     def test_should_register_method_into_route_suite(
         self, make_route_to_register_metadata
     ):
-        suite_element, function, method, route, suite, decorator = make_route_to_register_metadata
+        (
+            suite_element,
+            function,
+            method,
+            route,
+            suite,
+            decorator,
+        ) = make_route_to_register_metadata
         with patch.object(suite, "_Suite__suite") as suite:
             with patch.object(Function, "create", return_value=function):
                 with patch.object(Method, "create", return_value=method):
