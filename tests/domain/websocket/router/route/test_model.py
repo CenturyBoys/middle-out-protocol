@@ -11,20 +11,21 @@ from src.domain.websocket.router.route.model import Route
 
 @pytest.mark.unit
 class TestClass:
-
     @staticmethod
     @pytest.fixture(scope="function", autouse=True)
     def route():
-        name = '/valid_route/'
+        name = "/valid_route/"
         route = Route.create(name=name)
         return route
 
     @staticmethod
-    def stub_callback(connection: Connection, hand_shake: any, request: Request) -> Response:
+    def stub_callback(
+        connection: Connection, hand_shake: any, request: Request
+    ) -> Response:
         pass
 
     def test_should_create_valid_route(self, route: Route):
-        assert route.name == '/valid_route/'
+        assert route.name == "/valid_route/"
 
     def test_should_add_get_method(self, route: Route):
         function = Function.create(callback=TestClass.stub_callback)
