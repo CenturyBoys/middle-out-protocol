@@ -1,5 +1,4 @@
 import asyncio
-from unittest.mock import Mock, AsyncMock
 
 import pytest
 from websockets.legacy.server import WebSocketServer

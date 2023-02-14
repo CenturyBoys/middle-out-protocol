@@ -2,7 +2,6 @@ from src.domain.websocket.connection.model import Connection
 from src.domain.websocket.request.method.enum import MethodType
 from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.model import Response
-from src.domain.websocket.router.function.model import Function
 from src.domain.websocket.router.method.model import Method
 from src.domain.websocket.router.model import Router
 from src.domain.websocket.router.route.model import Route
