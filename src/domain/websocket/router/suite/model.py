@@ -23,9 +23,9 @@ class Suite:
     def post(self, name: str):
         def register_suite_element(callback):
             function = Function.create(callback=callback)
-            method = Method.create(type=MethodType.GET, function=function)
+            method = Method.create(type=MethodType.POST, function=function)
             route = Route.create(name=name)
-            route.add_get_method(method=method)
+            route.add_post_method(method=method)
 
             suite_element = {name: route}
             self.__suite.update(suite_element)
@@ -35,9 +35,9 @@ class Suite:
     def sub(self, name: str):
         def register_suite_element(callback):
             function = Function.create(callback=callback)
-            method = Method.create(type=MethodType.GET, function=function)
+            method = Method.create(type=MethodType.SUB, function=function)
             route = Route.create(name=name)
-            route.add_get_method(method=method)
+            route.add_sub_method(method=method)
 
             suite_element = {name: route}
             self.__suite.update(suite_element)
@@ -47,9 +47,9 @@ class Suite:
     def unsub(self, name: str):
         def register_suite_element(callback):
             function = Function.create(callback=callback)
-            method = Method.create(type=MethodType.GET, function=function)
+            method = Method.create(type=MethodType.UNSUB, function=function)
             route = Route.create(name=name)
-            route.add_get_method(method=method)
+            route.add_unsub_method(method=method)
 
             suite_element = {name: route}
             self.__suite.update(suite_element)

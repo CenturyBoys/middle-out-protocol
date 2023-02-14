@@ -14,7 +14,6 @@ from src.domain.websocket.router.suite.model import Suite
 
 @pytest.mark.unit
 class TestClass:
-
     @staticmethod
     def get_metadata(name: str):
         suite = Suite()

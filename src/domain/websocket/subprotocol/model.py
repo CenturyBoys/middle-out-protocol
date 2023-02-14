@@ -1,4 +1,6 @@
 from typing import List, Optional, Sequence
+
+# pylint: disable=no-name-in-module
 from websockets import WebSocketServerProtocol
 from websockets.datastructures import Headers
 from websockets.headers import (
@@ -25,7 +27,9 @@ class Subprotocol(WebSocketServerProtocol):
         return selected_subprotocol
 
     def process_subprotocol(
-        self, headers: Headers, available_subprotocols: Optional[Sequence[WebosockestSubprotocol]]
+        self,
+        headers: Headers,
+        available_subprotocols: Optional[Sequence[WebosockestSubprotocol]],
     ) -> Optional[WebosockestSubprotocol]:
         subprotocol: Optional[Subprotocol] = None
 

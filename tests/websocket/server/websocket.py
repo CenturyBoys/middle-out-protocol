@@ -9,7 +9,6 @@ from src.websocket.server.websocket import MiddleOutServer
 
 @pytest.mark.unit
 class TestClass:
-
     @pytest.mark.asyncio
     async def test_should_create_middle_out_server(self):
         server = MiddleOutServer(host="localhost", port=8001)
