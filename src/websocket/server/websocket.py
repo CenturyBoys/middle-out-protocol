@@ -4,7 +4,6 @@ from typing import Optional
 import websockets
 from websockets import WebSocketServer  # pylint: disable=no-name-in-module
 
-
 from src.domain.websocket.subprotocol.model import Subprotocol
 from src.domain.websocket.subprotocol.name.model import SubprotocolName
 
