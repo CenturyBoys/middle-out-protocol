@@ -1,3 +1,5 @@
+from typing import Callable
+
 from src.domain.websocket.request.method.enum import MethodType
 from src.domain.websocket.router.function.model import Function
 from src.domain.websocket.router.method.model import Method
@@ -9,7 +11,7 @@ class Suite:
         self.__suite: dict = {}
 
     def get(self, name: str):
-        def register_suite_element(callback):
+        def register_suite_element(callback: Callable):
             function = Function.create(callback=callback)
             method = Method.create(type=MethodType.GET, function=function)
             route = Route.create(name=name)
@@ -21,7 +23,7 @@ class Suite:
         return register_suite_element
 
     def post(self, name: str):
-        def register_suite_element(callback):
+        def register_suite_element(callback: Callable):
             function = Function.create(callback=callback)
             method = Method.create(type=MethodType.POST, function=function)
             route = Route.create(name=name)
@@ -33,7 +35,7 @@ class Suite:
         return register_suite_element
 
     def sub(self, name: str):
-        def register_suite_element(callback):
+        def register_suite_element(callback: Callable):
             function = Function.create(callback=callback)
             method = Method.create(type=MethodType.SUB, function=function)
             route = Route.create(name=name)
@@ -45,7 +47,7 @@ class Suite:
         return register_suite_element
 
     def unsub(self, name: str):
-        def register_suite_element(callback):
+        def register_suite_element(callback: Callable):
             function = Function.create(callback=callback)
             method = Method.create(type=MethodType.UNSUB, function=function)
             route = Route.create(name=name)
@@ -55,3 +57,7 @@ class Suite:
             self.__suite.update(suite_element)
 
         return register_suite_element
+
+    @property
+    def suite(self):
+        return self.__suite
