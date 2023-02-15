@@ -12,93 +12,93 @@ from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.code.enum import ResponseCode
 
 
-@pytest.fixture
-def valid_sub_request():
-    request = Request(
-        id="request", args={}, header={}, route="valid_route", method="sub"
-    )
-    return request
-
-
-@pytest.fixture
-def valid_unsub_request():
-    request = Request(
-        id="request", args={}, header={}, route="valid_route", method="unsub"
-    )
-    return request
-
-
-@pytest.fixture
-def valid_post_request():
-    request = Request(
-        id="request", args={}, header={}, route="valid_route", method="post"
-    )
-    return request
-
-
-@pytest.fixture
-def valid_get_request():
-    request = Request(
-        id="request", args={}, header={}, route="valid_route", method="get"
-    )
-    return request
-
-
-@pytest.fixture
-def request_with_invalid_method():
-    with pytest.raises(InvalidRequestMethodException) as error:
-        Request(
-            id="request",
-            args={},
-            header={},
-            route="valid_route",
-            method="invalid_method",
-        )
-    return error
-
-
-@pytest.fixture
-def request_with_invalid_args():
-    with pytest.raises(InvalidRequestArgsException) as error:
-        Request(
-            id="request",
-            args="INVALID_ARGS",
-            header={},
-            route="valid_route",
-            method="sub",
-        )
-    return error
-
-
-@pytest.fixture
-def request_with_invalid_id():
-    with pytest.raises(InvalidRequestIdException) as error:
-        Request(id=1234, args={}, header={}, route="valid_route", method="sub")
-    return error
-
-
-@pytest.fixture
-def request_with_invalid_header():
-    with pytest.raises(InvalidRequestHeaderException) as error:
-        Request(
-            id="request",
-            args={},
-            header="INVALID HEADER",
-            route="valid_route",
-            method="sub",
-        )
-    return error
-
-
-@pytest.fixture
-def request_with_invalid_route():
-    with pytest.raises(InvalidRequestRouteException) as error:
-        Request(id="request", args={}, header={}, route=1234, method="sub")
-    return error
-
-
 @pytest.mark.unit
 class TestClass:
+    @staticmethod
+    @pytest.fixture
+    def valid_sub_request():
+        request = Request(
+            id="request", args={}, header={}, route="valid_route", method="sub"
+        )
+        return request
+
+    @staticmethod
+    @pytest.fixture
+    def valid_unsub_request():
+        request = Request(
+            id="request", args={}, header={}, route="valid_route", method="unsub"
+        )
+        return request
+
+    @staticmethod
+    @pytest.fixture
+    def valid_post_request():
+        request = Request(
+            id="request", args={}, header={}, route="valid_route", method="post"
+        )
+        return request
+
+    @staticmethod
+    @pytest.fixture
+    def valid_get_request():
+        request = Request(
+            id="request", args={}, header={}, route="valid_route", method="get"
+        )
+        return request
+
+    @staticmethod
+    @pytest.fixture
+    def request_with_invalid_method():
+        with pytest.raises(InvalidRequestMethodException) as error:
+            Request(
+                id="request",
+                args={},
+                header={},
+                route="valid_route",
+                method="invalid_method",
+            )
+        return error
+
+    @staticmethod
+    @pytest.fixture
+    def request_with_invalid_args():
+        with pytest.raises(InvalidRequestArgsException) as error:
+            Request(
+                id="request",
+                args="INVALID_ARGS",
+                header={},
+                route="valid_route",
+                method="sub",
+            )
+        return error
+
+    @staticmethod
+    @pytest.fixture
+    def request_with_invalid_id():
+        with pytest.raises(InvalidRequestIdException) as error:
+            Request(id=1234, args={}, header={}, route="valid_route", method="sub")
+        return error
+
+    @staticmethod
+    @pytest.fixture
+    def request_with_invalid_header():
+        with pytest.raises(InvalidRequestHeaderException) as error:
+            Request(
+                id="request",
+                args={},
+                header="INVALID HEADER",
+                route="valid_route",
+                method="sub",
+            )
+        return error
+
+    @staticmethod
+    @pytest.fixture
+    def request_with_invalid_route():
+        with pytest.raises(InvalidRequestRouteException) as error:
+            Request(id="request", args={}, header={}, route=1234, method="sub")
+        return error
+
     @staticmethod
     def test_should_get_a_valid_sub_request_instance(valid_sub_request):
         assert valid_sub_request is not None
