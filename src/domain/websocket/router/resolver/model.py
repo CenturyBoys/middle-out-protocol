@@ -1,3 +1,5 @@
+import loglifos
+
 from src.core.websocket.controller.base.interface import BaseController
 from src.domain.websocket.router.route.model import Route
 
@@ -7,13 +9,20 @@ class Resolver:
         self.__route: Route = route
         self.__controller: BaseController = controller
 
-    def resolve_request(self):
-        pass
-
-    @property
-    def route(self):
-        return self.__route
-
-    @property
-    def controller(self):
-        return self.__controller
+    async def __call__(self):
+        try:
+            await self.__controller.on_request(route=self.__route)
+        except IndexError as error:
+            loglifos.error(
+                msg="Error when resolve request",
+                error=error,
+                route_name=self.__route.name,
+                method_type=self.__route.get_method().type.value,
+            )
+        except Exception as error:  # pylint: disable=broad-exception-caught
+            loglifos.error(
+                msg="Error when resolve request",
+                error=error,
+                route_name=self.__route.name,
+                method_type=self.__route.get_method().type.value,
+            )

@@ -5,7 +5,7 @@ from src.domain.exception.server.model import (
     RouteFunctionHasInvalidSignatureException,
 )
 from src.domain.websocket.connection.model import Connection
-from src.domain.websocket.request.method.enum import MethodType as MethodType
+from src.domain.websocket.request.method.enum import MethodType
 from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.code.enum import ResponseCode
 from src.domain.websocket.response.model import Response
@@ -34,7 +34,7 @@ class TestClass:
     def test_should_create_valid_method(
         self, method_type: MethodType, function: Function
     ):
-        method = Method.create(type=method_type, function=function)
+        method = Method.create(method_type=method_type, function=function)
         assert method.type == method_type
         assert method.function == function
 
@@ -47,7 +47,8 @@ class TestClass:
     ):
         with pytest.raises(RouteFunctionIsNotCallableException) as error:
             _ = Method.create(
-                type=method_type, function=Function.create(callback="not_callable")
+                method_type=method_type,
+                function=Function.create(callback="not_callable"),
             )
 
         assert error.value.message == "Route function is not a callable"
@@ -62,7 +63,7 @@ class TestClass:
     ):
         with pytest.raises(RouteFunctionHasInvalidSignatureException) as error:
             _ = Method.create(
-                type=method_type, function=Function.create(callback=lambda x: x)
+                method_type=method_type, function=Function.create(callback=lambda x: x)
             )
 
         assert error.value.message == "Route function has a invalid signature"

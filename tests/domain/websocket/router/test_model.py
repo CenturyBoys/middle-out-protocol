@@ -46,10 +46,10 @@ class TestClass:
     @staticmethod
     def assert_that_is_valid_router(route: Route):
         assert isinstance(route, Route)
-        assert isinstance(route.get_method(method_type=MethodType.GET), Method)
-        assert route.get_method(method_type=MethodType.POST) is None
-        assert route.get_method(method_type=MethodType.SUB) is None
-        assert route.get_method(method_type=MethodType.UNSUB) is None
+        assert isinstance(route.get_method(), Method)
+        assert route._Route__post_method is None
+        assert route._Route__sub_method is None
+        assert route._Route__unsub_method is None
 
     def test_should_add_suite_with_get_into_router(self, suite_with_get_router_factory):
         router = Router()

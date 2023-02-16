@@ -1,7 +1,7 @@
 import pytest
 
 from src.domain.websocket.connection.model import Connection
-from src.domain.websocket.request.method.enum import MethodType as MethodType
+from src.domain.websocket.request.method.enum import MethodType
 from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.model import Response
 from src.domain.websocket.router.function.model import Function
@@ -29,31 +29,31 @@ class TestClass:
 
     def test_should_add_get_method(self, route: Route):
         function = Function.create(callback=TestClass.stub_callback)
-        method = Method.create(type=MethodType.GET, function=function)
+        method = Method.create(method_type=MethodType.GET, function=function)
         route.add_get_method(method=method)
         assert route._Route__get_method == method
 
     def test_should_add_post_method(self, route: Route):
         function = Function.create(callback=TestClass.stub_callback)
-        method = Method.create(type=MethodType.POST, function=function)
+        method = Method.create(method_type=MethodType.POST, function=function)
         route.add_post_method(method=method)
         assert route._Route__post_method == method
 
     def test_should_add_sub_method(self, route: Route):
         function = Function.create(callback=TestClass.stub_callback)
-        method = Method.create(type=MethodType.SUB, function=function)
+        method = Method.create(method_type=MethodType.SUB, function=function)
         route.add_sub_method(method=method)
         assert route._Route__sub_method == method
 
     def test_should_add_unsub_method(self, route: Route):
         function = Function.create(callback=TestClass.stub_callback)
-        method = Method.create(type=MethodType.UNSUB, function=function)
+        method = Method.create(method_type=MethodType.UNSUB, function=function)
         route.add_unsub_method(method=method)
         assert route._Route__unsub_method == method
 
     def test_should_get_post_method(self, route: Route):
         function = Function.create(callback=TestClass.stub_callback)
-        method = Method.create(type=MethodType.POST, function=function)
+        method = Method.create(method_type=MethodType.POST, function=function)
         route.add_post_method(method=method)
-        post_method = route.get_method(method_type=MethodType.POST)
+        post_method = route.get_method()
         assert post_method == method

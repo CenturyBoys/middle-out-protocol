@@ -18,8 +18,7 @@ class Header:
 
     @staticmethod
     def validate_header(header: dict):
-        is_dict_header = type(header) == dict
-        if not is_dict_header:
+        if not isinstance(header, dict):
             raise InvalidRequestHeaderException(f"Request header {header} is invalid")
 
         return header

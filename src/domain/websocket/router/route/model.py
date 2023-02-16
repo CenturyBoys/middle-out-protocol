@@ -1,6 +1,5 @@
 from typing import Optional
 
-from src.domain.websocket.request.method.enum import MethodType
 from src.domain.websocket.router.method.model import Method
 
 
@@ -28,20 +27,14 @@ class Route:
     def add_unsub_method(self, method: Method):
         self.__unsub_method = method
 
-    def get_method(self, method_type: MethodType):
-        method_to_return = None
-
-        if method_type == MethodType.GET:
-            method_to_return = self.__get_method
-
-        if method_type == MethodType.POST:
-            method_to_return = self.__post_method
-
-        if method_type == MethodType.SUB:
-            method_to_return = self.__sub_method
-
-        if method_type == MethodType.UNSUB:
-            method_to_return = self.__unsub_method
+    def get_method(self):
+        methods = [
+            self.__get_method,
+            self.__post_method,
+            self.__sub_method,
+            self.__unsub_method,
+        ]
+        method_to_return = list(filter(lambda x: x is not None, methods))[0]
 
         return method_to_return
 

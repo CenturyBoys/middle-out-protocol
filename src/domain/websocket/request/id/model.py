@@ -7,6 +7,7 @@ from src.domain.exception.server.model import InvalidRequestIdException
 class Id:
     __id: str
 
+    # pylint: disable=redefined-builtin, invalid-name
     @property
     def id(self):
         return self.__id
@@ -18,8 +19,9 @@ class Id:
 
     @staticmethod
     def validate_id(id: str):
-        is_str_id = type(id) == str
-        if not is_str_id:
+        if not isinstance(id, str):
             raise InvalidRequestIdException(f"Request id {id} is invalid")
 
         return id
+
+    # pylint: enable=redefined-builtin, invalid-name

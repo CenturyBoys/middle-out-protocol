@@ -3,7 +3,7 @@ from unittest.mock import patch
 import pytest
 
 from src.domain.websocket.connection.model import Connection
-from src.domain.websocket.request.method.enum import MethodType as MethodType
+from src.domain.websocket.request.method.enum import MethodType
 from src.domain.websocket.request.model import Request
 from src.domain.websocket.response.model import Response
 from src.domain.websocket.router.function.model import Function
@@ -50,7 +50,7 @@ class TestClass:
         method_type, name, suite, decorator, route, add_method = request.param
 
         function = Function.create(callback=TestClass.stub_function)
-        method = Method.create(type=method_type, function=function)
+        method = Method.create(method_type=method_type, function=function)
         route.add_get_method(method=method)
         suite_element = {name: route}
 

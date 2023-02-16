@@ -18,8 +18,7 @@ class Args:
 
     @staticmethod
     def validate_args(args):
-        is_dict_args = type(args) == dict
-        if not is_dict_args:
+        if not isinstance(args, dict):
             raise InvalidRequestArgsException(f"Request args {args} is invalid")
 
         return args
