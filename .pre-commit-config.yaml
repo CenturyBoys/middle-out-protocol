@@ -6,6 +6,12 @@ repos:
       entry: black .
       language: system
       types: [ python ]
+    - id: pytest-unit-check
+      name: pytest-unit-check
+      entry: pytest -m unit
+      language: system
+      types: [ python ]
+      pass_filenames: false
     - id: pylint-check
       name: pylint-check
       entry: pylint
@@ -18,12 +24,7 @@ repos:
           "--disable=C0114", # Remove temporarily docstring
           "--disable=C0115", # Remove temporarily docstring
           "--disable=C0116", # Remove temporarily docstring
+          "--disable=R0903", # Check this disable
           "-rn", # Only display messages
           "-sn", # Don't display the score
         ]
-    - id: pytest-unit-check
-      name: pytest-unit-check
-      entry: pytest -m unit
-      language: system
-      types: [ python ]
-      pass_filenames: false
